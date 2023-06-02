@@ -20,6 +20,7 @@ const Series = () => {
     const data = await response.json();
     setSeries(data.data.results);
     setIsLoading(false);
+    console.log(data)
   };
 
   const handleLoadSeries = () => {
