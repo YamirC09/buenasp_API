@@ -33,6 +33,7 @@ const Series = () => {
   return (
     <div>
       <h1>Series de Marvel</h1>
+      <h2>PD: Algunas series no poseen imagenes</h2>
       <div>
         <button onClick={handlePreviousPage}>Anterior</button>
         <button onClick={handleNextPage}>Siguiente</button> 
