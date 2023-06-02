@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 const Series = () => {
   const [series, setSeries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchSeries();
-  }, [currentPage]);
+    if (isLoading) {
+      fetchSeries();
+    }
+  }, [isLoading]);
 
   const fetchSeries = async () => {
     const apiKey = 'a4d59c5704cd70b188a6dc485879f63a';
@@ -15,7 +18,11 @@ const Series = () => {
     );
     const data = await response.json();
     setSeries(data.data.results);
-    console.log(data)
+    setIsLoading(false);
+  };
+
+  const handleLoadSeries = () => {
+    setIsLoading(true);
   };
 
   const handlePreviousPage = () => {
@@ -28,15 +35,14 @@ const Series = () => {
     setCurrentPage(currentPage + 1);
   };
 
-
-
   return (
     <div>
       <h1>Series de Marvel</h1>
-      <h2>PD: Algunas series no poseen imagenes</h2>
+      <h2>PD: Algunas series no poseen imágenes</h2>
       <div>
+        <button onClick={handleLoadSeries}>Cargar Series</button>
         <button onClick={handlePreviousPage}>Anterior</button>
-        <button onClick={handleNextPage}>Siguiente</button> 
+        <button onClick={handleNextPage}>Siguiente</button>
       </div>
       <ul>
         {series.map((serie) => (
@@ -53,4 +59,4 @@ const Series = () => {
   );
 };
 
-export default Series
+export default Series;
