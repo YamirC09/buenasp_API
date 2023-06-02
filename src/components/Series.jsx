@@ -17,6 +17,17 @@ const Series = () => {
     setSeries(data.data.results);
   };
 
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+
 
   return (
     <div>Series</div>
